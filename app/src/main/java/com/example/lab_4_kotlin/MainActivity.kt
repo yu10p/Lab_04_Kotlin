@@ -12,18 +12,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btn:Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        //初始化Activity
         super.onCreate(savedInstanceState)
-        //連接main1.xml畫面
         setContentView(R.layout.activity_main)
-        //連接tv_meal元件
+
         tv_meal = findViewById<TextView>(R.id.tv_meal)
-        //連接btn_choice
         btn = findViewById<Button>(R.id.btn_choice)
-        //監聽btn_choice
         btn.setOnClickListener(){
-            val intent = Intent(this,MainActivity2::class.java)
-            startActivityForResult(intent,1)
+            startActivityForResult(Intent(this,
+                MainActivity2::class.java),1)
         }
     }
 
@@ -33,8 +29,8 @@ class MainActivity : AppCompatActivity() {
 
         if (requestCode == 1) {
             if (resultCode == 101) {
-                val b = data.extras
-                val str1 = b!!.getString("drink")
+                val b = data.extras!!
+                val str1 = b.getString("drink")
                 val str2 = b.getString("sugar")
                 val str3 = b.getString("ice")
                 tv_meal.text = String.format(
